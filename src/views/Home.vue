@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home-wrapper">
+    <PageHeader></PageHeader>
+    <SideBar class="sidebar"></SideBar>
+    <MusicPlayer></MusicPlayer>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import PageHeader from '@/components/PageHeader.vue'
+import SideBar from '@/components/SideBar.vue'
+import MusicPlayer from '@/components/MusicPlayer.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    PageHeader,
+    SideBar,
+    MusicPlayer
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  .sidebar {
+    flex-grow: 1;
+  }
+}
+</style>
