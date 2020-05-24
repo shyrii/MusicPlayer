@@ -1,7 +1,7 @@
 <template>
   <div class="home-wrapper">
     <PageHeader></PageHeader>
-    <SideBar class="sidebar"></SideBar>
+    <SideBar></SideBar>
     <MusicPlayer></MusicPlayer>
   </div>
 </template>
@@ -25,12 +25,9 @@ export default {
 <style lang="scss" scoped>
 .home-wrapper {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  .sidebar {
-    flex-grow: 1;
-  }
 }
 </style>

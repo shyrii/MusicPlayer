@@ -54,6 +54,7 @@ export default {
   height: 60px;
   background-color: #f5f5f7;
   border-top: 1px solid #e1e1e2;
+  flex-shrink: 0;
   .icon-block {
     display: flex;
     align-items: center;

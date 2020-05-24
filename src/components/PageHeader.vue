@@ -61,6 +61,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
   background-color: $theme-color;
   width: 100%;
   height: 60px;

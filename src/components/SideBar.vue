@@ -62,6 +62,7 @@ export default {
   width: 200px;
   background-color: #f5f5f7;
   border-right: 1px solid #e1e1e2;
+  flex-grow: 1;
   .sidebar-block {
     .title {
       height: 35px;
