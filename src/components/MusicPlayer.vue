@@ -24,12 +24,16 @@
           :processStyle="{ backgroundColor: '#e93c3c' }"
           :min='0'
           :max='totalTime'
-        ></vue-slider>
+        >
+          <template v-slot:dot="{ sliderValue, focus }">
+            <div :class="['progress-dot', { focus }]"></div>
+          </template>
+        </vue-slider>
       </div>
       <div class="time">03:12</div>
     </div>
     <div class="volume-block">
-      <VolumeLogo class="small-icon"/>
+      <VolumeLogo class="volume-icon"/>
       <div class="volume-bar">
         <vue-slider 
           v-model="volumeValue"
@@ -38,7 +42,11 @@
           :processStyle="{ backgroundColor: '#e93c3c' }"
           :min='0'
           :max='totalTime'
-        ></vue-slider>
+        >
+          <template v-slot:dot="{ volumeValue, focus }">
+            <div :class="['volume-dot', { focus }]"></div>
+          </template>
+        </vue-slider>
       </div>
       <LyricsLogo class="small-icon"/>
     </div>
@@ -142,6 +150,27 @@ export default {
     .progress-bar {
       flex-grow: 1;
       margin: 0 15px;
+      .progress-dot {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-color: #fff;
+        border: solid 1px #c3c3c3;
+      }
+      .progress-dot::after {
+        content: '';
+        width: 4px;
+        height: 4px;
+        border-radius: 4px;
+        background-color: #e83c3c;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .progress-dot.focus {
+        outline: none;
+      }
     }
   }
   .volume-block {
@@ -151,6 +180,37 @@ export default {
     .volume-bar {
       margin: 0 20px 0 5px;
       width: 100px;
+      .volume-dot {
+        width: 90%;
+        height: 90%;
+        border-radius: 90%;
+        background-color: #fff;
+        border: solid 1px #c3c3c3;
+      }
+      .volume-dot::after {
+        content: '';
+        width: 4px;
+        height: 4px;
+        border-radius: 4px;
+        background-color: #e83c3c;
+        position: absolute;
+        left: 40%;
+        top: 40%;
+        transform: translate(-50%, -50%);
+      }
+      .volume-dot.focus {
+        outline: none;
+      }
+    }
+    .volume-icon {
+      width: 22px;
+      height: 18px;
+    }
+    .volume-icon:hover {
+      path {
+        cursor: pointer;
+        fill: #515151;
+      }
     }
   }
 }
