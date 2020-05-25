@@ -1,10 +1,13 @@
 <template>
   <div class="home-wrapper">
     <PageHeader></PageHeader>
-    <div class="side-box">
-      <SideBar></SideBar>
-      <SideBlock></SideBlock>
-    </div>   
+    <div class="middle-box">
+      <div class="side-box">
+        <SideBar></SideBar>
+        <SideBlock></SideBlock>
+      </div>
+      <ContentBlock></ContentBlock>
+    </div>
     <MusicPlayer></MusicPlayer>
   </div>
 </template>
@@ -14,6 +17,7 @@
 import PageHeader from '@/components/PageHeader.vue'
 import SideBar from '@/components/SideBar.vue'
 import SideBlock from '@/components/SideBlock.vue'
+import ContentBlock from '@/components/ContentBlock.vue'
 import MusicPlayer from '@/components/MusicPlayer.vue'
 
 export default {
@@ -22,6 +26,7 @@ export default {
     PageHeader,
     SideBar,
     SideBlock,
+    ContentBlock,
     MusicPlayer
   }
 }
@@ -34,10 +39,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  .middle-box {
+    display: flex;
+    flex-grow: 1;
+  }
   .side-box {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-shrink: 0;
     align-items: stretch;
   }
 }

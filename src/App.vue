@@ -10,6 +10,7 @@
 
 <style lang="scss">
 html {
+  width: 100%;
   height: 100%;
 }
 div {
@@ -19,6 +20,7 @@ body {
   margin: 0;
   min-width: 1024px;
   height: 100%;
+  width: 100%;
   /* min-height: 720px; */
 }
 #app {

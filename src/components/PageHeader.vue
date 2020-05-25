@@ -66,6 +66,7 @@ export default {
   width: 100%;
   height: 60px;
   padding: 0 25px;
+  z-index: 1;
   .cursor {
     cursor: pointer;
   }

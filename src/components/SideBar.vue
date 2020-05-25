@@ -2,7 +2,7 @@
   <div class="sidebar-wrapper">
     <div class="sidebar-block" v-for="item in sidebarMenu" :key="item.title">
       <div class="title">{{ item.title }}</div>
-      <div class="item" v-for="item in item.list" :key="item">
+      <div class="item" v-bind:class="{ selected: item === selectedItem}" v-for="item in item.list" :key="item" @click="changeMenu(item)">
         <MusicIcon class="sidebar-icon"/>
         {{ item }}</div>
     </div>
@@ -18,6 +18,7 @@ export default {
   },
   data() {
     return {
+      selectedItem: '发现音乐',
       sidebarMenu: [
         {
           title: '推荐',
@@ -37,8 +38,12 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    changeMenu(item) {
+      this.selectedItem = item;
+    }
   }
-
 }
 </script>
 
@@ -65,18 +70,19 @@ export default {
   flex-grow: 1;
   .sidebar-block {
     .title {
-      height: 35px;
-      line-height: 35px;
+      height: 32px;
+      line-height: 32px;
       color: #7d7d7d;
       padding: 0 10px;
       font-size: 13px;
       text-align: left;
     }
     .item {
+      position: relative;
       display: flex;
       align-items: center;
-      height: 35px;
-      line-height: 35px;
+      height: 32px;
+      line-height: 32px;
       font-size: 12px;
       color: #5c5c5c;
     }
@@ -89,6 +95,15 @@ export default {
           fill: #000000;
         }
       }
+    }
+    .selected::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 32px;
+      width: 3px;
+      background-color: #C62F2F;
     }
   }
 }
