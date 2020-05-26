@@ -23,5 +23,6 @@ export default {
 
 .sideblock-wrapper {
   flex-grow: 1;
+  overflow-y: auto;
 }
 </style>

@@ -4,17 +4,27 @@
     <div class="songlist-box">
       <div class="title">推荐歌单</div>
       <div class="list-block">
-        <div class="daily-item-wrapper">
-          <div class="daily-item">
-            <div class="item-box">
+        <div class="item-wrapper">
+          <div class="item">
+            <div class="item-box border">
               <div class="week">星期一</div>
               <div class="day">25</div>
             </div>
           </div>
           <div class="name">每日歌曲推荐</div>
         </div>
-        
-        <!-- <div class="song-item"></div> -->
+        <div class="item-wrapper" v-for="item in recommend" :key="item.id">
+          <div class="item">
+            <div class="item-box">
+              <img src="../assets/demo.png" class="item-img"/>
+              <div class="listen-block">
+                <img src="../assets/headset.png"/>
+                <span>{{ item.playcount }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="name">{{ item.name }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -33,8 +43,32 @@ export default {
         {
           id: 12,
           name: '重温昔日主旋律，唤起青春回忆杀',
-          picUrl: 'https://images.app.goo.gl/exHixSp7WcCWRLyK8',
-          playcount: 3100,
+          picUrl: '../assets/demo.png',
+          playcount: '234万',
+        },
+        {
+          id: 12,
+          name: '重温昔日主旋律，唤起青春回忆杀',
+          picUrl: '../assets/demo.png',
+          playcount: '234万',
+        },
+        {
+          id: 12,
+          name: '重温昔日主旋律，唤起青春回忆杀',
+          picUrl: '../assets/demo.png',
+          playcount: '234万',
+        },
+        {
+          id: 12,
+          name: '重温昔日主旋律，唤起青春回忆杀',
+          picUrl: '../assets/demo.png',
+          playcount: '234万',
+        },
+        {
+          id: 12,
+          name: '重温昔日主旋律，唤起青春回忆杀',
+          picUrl: '../assets/demo.png',
+          playcount: '234万',
         }
       ]
     }
@@ -69,26 +103,32 @@ export default {
       position: absolute;
       left: 0;
       top: 35px;
-      width: 90%;
-      height: 1px;
+      width: 100%;
+      height: 0.5px;
       background-color: #E1E1E2;
     }
     .list-block {
-      display: inline-block;
       margin-top: 12px;
       width: 100%;
-      .daily-item-wrapper {
+      text-align: left;
+      .item-wrapper {
+        display: inline-block;
         width: 18%;
-        .daily-item {
+        vertical-align: top;
+        margin-bottom: 20px;
+        .item {
           position: relative;
           width: 100%;
           height: 0;
           padding-bottom: 100%;
+          text-align: center;
+          .border {
+            border: solid 1px #E1E1E2;
+          }
           .item-box {
             position: absolute;
             height: 100%;
             width: 100%;
-            border: solid 0.5px #E1E1E2;
             .week {
               margin-top: 15px;
               font-size: 16px;
@@ -97,6 +137,28 @@ export default {
             .day {
               font-size: 85px;
               color: #C62F2F;
+            }
+            img {
+              border: none;
+            }
+            .item-img {
+              width: 100%;
+              height: 100%;
+            }
+            .listen-block {
+              position: absolute;
+              right: 0;
+              top: 0;
+              color: #ffffff;
+              font-size: 12px;
+              padding: 5px;
+              display: flex;
+              align-items: center;
+              img {
+                width: 12px;
+                height: 12px;
+                margin-right: 5px;
+              }
             }
           }
         }
@@ -107,11 +169,18 @@ export default {
           font-size: 13px;
         }
       }
-      .song-item {
-        width: 22%;
-        height: 22%;
-        border: solid 1px #E1E1E2;
-      }
+    }
+    .item-wrapper:nth-child(5n+1) {
+      margin-right: 2.5%;
+    }
+    .item-wrapper:nth-child(5n+2) {
+      margin-right: 2.5%;
+    }
+    .item-wrapper:nth-child(5n+3) {
+      margin-right: 2.5%;
+    }
+    .item-wrapper:nth-child(5n+4) {
+      margin-right: 2.5%;
     }
   }
 }

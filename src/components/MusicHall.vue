@@ -58,12 +58,12 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
-  /* background-color: red; */
   .nav-bar {
     width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
+    padding: 0 30px;
     .nav-item {
       margin: 0 22px;
       height: 50px;
@@ -85,7 +85,7 @@ export default {
     position: absolute;
     left: 30px;
     top: 50px;
-    width: 90%;
+    width: 95%;
     height: 1px;
     background-color: #E1E1E2;
   }
