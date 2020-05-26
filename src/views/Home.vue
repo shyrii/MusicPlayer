@@ -42,6 +42,7 @@ export default {
   .middle-box {
     display: flex;
     flex-grow: 1;
+    height: 0;
   }
   .side-box {
     display: flex;

@@ -12,7 +12,7 @@ Vue.use(VueRouter)
     // name: 'Home',
     component: Home,
     children: [{
-      path: 'music',
+      path: '',
       component: MusicHall
     },
     {

@@ -4,12 +4,10 @@
   </div>
 </template>
 <script>
-import ShareIcon from '../assets/share.svg';
 
 export default {
   name: 'ContentBlock',
   components: {
-    ShareIcon
   },
   data() {
     return {

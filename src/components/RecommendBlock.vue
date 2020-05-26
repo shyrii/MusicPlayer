@@ -1,6 +1,14 @@
 <template>
   <div class="recommend-wrapper">
-    <div class="carousel-box"></div>
+    <!-- <div class="carousel-box" :style="{backgroundImage: `url(${banners[0].imageUrl})`}"></div> -->
+    <div class="carousel-box">
+      <swiper class="swiper" :options="swiperOption">
+        <swiper-slide :style="{backgroundImage: `url(${item.imageUrl})`}" v-for="item in banners" :key="item.imageUrl"></swiper-slide>
+        <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
+        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+      </swiper>
+    </div>
     <div class="songlist-box">
       <div class="title">推荐歌单</div>
       <div class="list-block">
@@ -16,10 +24,10 @@
         <div class="item-wrapper" v-for="item in recommend" :key="item.id">
           <div class="item">
             <div class="item-box">
-              <img src="../assets/demo.png" class="item-img"/>
+              <img :src="item.picUrl" class="item-img"/>
               <div class="listen-block">
                 <img src="../assets/headset.png"/>
-                <span>{{ item.playcount }}</span>
+                <span>{{ item.playCount }}</span>
               </div>
             </div>
           </div>
@@ -30,50 +38,70 @@
   </div>
 </template>
 <script>
-import ShareIcon from '../assets/share.svg';
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+import urls from '../apis/urls'
 
 export default {
   name: 'RecommendBlock',
   components: {
-    ShareIcon
+    Swiper,
+    SwiperSlide
+  },
+  directives: {
+    swiper: directive
   },
   data() {
     return {
-      recommend: [
-        {
-          id: 12,
-          name: '重温昔日主旋律，唤起青春回忆杀',
-          picUrl: '../assets/demo.png',
-          playcount: '234万',
+      recommend: [],
+      banners: [],
+      swiperOption: {
+        effect: 'coverflow',
+        loop: true,
+        autoplay: {
+          delay: 1000,//1秒切换一次
         },
-        {
-          id: 12,
-          name: '重温昔日主旋律，唤起青春回忆杀',
-          picUrl: '../assets/demo.png',
-          playcount: '234万',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows : true
         },
-        {
-          id: 12,
-          name: '重温昔日主旋律，唤起青春回忆杀',
-          picUrl: '../assets/demo.png',
-          playcount: '234万',
-        },
-        {
-          id: 12,
-          name: '重温昔日主旋律，唤起青春回忆杀',
-          picUrl: '../assets/demo.png',
-          playcount: '234万',
-        },
-        {
-          id: 12,
-          name: '重温昔日主旋律，唤起青春回忆杀',
-          picUrl: '../assets/demo.png',
-          playcount: '234万',
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
         }
-      ]
+      }
+    }
+  },
+  mounted() {
+    this.getRecommend();
+    this.getBanner();
+  },
+  methods: {
+    async getBanner() {
+      const res = await this.axios({
+        methods: 'get',
+        url: urls.banner,
+      })
+      if (res.data.code === 200) {
+        this.banners = res.data.banners;
+      }
+    },
+    async getRecommend() {
+      const res = await this.axios({
+        methods: 'get',
+        url: urls.personalized,
+      })
+      if (res.data.code === 200) {
+        this.recommend = res.data.result;
+      }
     }
   }
-
 }
 </script>
 
@@ -82,11 +110,25 @@ export default {
 .recommend-wrapper {
   width: 100%;
   .carousel-box {
-    background: no-repeat url("../assets/carousel.png");
-    background-size: cover;
-    width: 600px;
-    height: 200px;
-    margin: 20px auto;
+    width: 100%;
+    height: auto;
+    padding: 20px 30px;
+
+    .swiper {
+      height: 100%;
+      width: 100%;
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        /* height: 200px; */
+        padding-bottom: 18.52%;
+        text-align: center;
+        background-position: center;
+        background-size: cover;
+      }
+    }
   }
   .songlist-box {
     width: 100%;
