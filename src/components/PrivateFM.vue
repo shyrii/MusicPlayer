@@ -12,16 +12,30 @@
   </div>
 </template>
 <script>
-import ShareIcon from '../assets/share.svg';
+import urls from '../apis/urls'
 
 export default {
   name: 'PrivateFM',
   components: {
-    ShareIcon
   },
   data() {
     return {
+      personalFm: []
     }
+  },
+  mounted() {
+    this.getPersonalFm();
+  },
+  methods: {
+    async getPersonalFm() {
+      const res = await this.axios({
+        methods: 'get',
+        url: urls.personal_fm,
+      })
+      if (res.data.code === 200) {
+        this.personalFm = res.data.data;
+      }
+    },
   }
 
 }

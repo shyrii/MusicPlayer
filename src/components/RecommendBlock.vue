@@ -4,7 +4,7 @@
     <div class="carousel-box">
       <swiper class="swiper" :options="swiperOption">
         <swiper-slide :style="{backgroundImage: `url(${item.imageUrl})`}" v-for="item in banners" :key="item.imageUrl"></swiper-slide>
-        <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
+        <div class="swiper-pagination" slot="pagination"></div>
         <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
         <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
       </swiper>
@@ -59,17 +59,23 @@ export default {
         effect: 'coverflow',
         loop: true,
         autoplay: {
-          delay: 1000,//1秒切换一次
+          delay: 3000,
+          disableOnInteraction: true,
         },
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 'auto',
+        loopedSlides: 2,
         coverflowEffect: {
           rotate: 0,
           stretch: 0,
           depth: 100,
           modifier: 1,
           slideShadows : true
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
         },
         navigation: {
           nextEl: '.swiper-button-next',
@@ -127,6 +133,12 @@ export default {
         text-align: center;
         background-position: center;
         background-size: cover;
+      }
+      .swiper-button-prev::after {
+        font-size: 15px;
+      }
+      .swiper-button-next::after {
+        font-size: 15px;
       }
     }
   }
